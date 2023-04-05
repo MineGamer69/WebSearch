@@ -21,9 +21,49 @@
         android:id="@+id/searchFragment"
         android:name="com.example.websearch.SearchFragment"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_imageSearchFragment"
+            app:destination="@id/imageSearchFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_newsSearchFragment"
+            app:destination="@id/newsSearchFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_webSearchFragment"
+            app:destination="@id/webSearchFragment" />
+    </fragment>
     <fragment
         android:id="@+id/helpFragment2"
         android:name="com.example.websearch.HelpFragment"
         android:label="HelpFragment" />
+    <fragment
+        android:id="@+id/imageSearchFragment"
+        android:name="com.example.websearch.ImageSearchFragment"
+        android:label="fragment_image_search"
+        tools:layout="@layout/fragment_image_search" >
+        <argument
+            android:name="query"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/newsSearchFragment"
+        android:name="com.example.websearch.NewsSearchFragment"
+        android:label="fragment_news_search"
+        tools:layout="@layout/fragment_news_search" >
+        <argument
+            android:name="query"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/webSearchFragment"
+        android:name="com.example.websearch.WebSearchFragment"
+        android:label="fragment_web_search"
+        tools:layout="@layout/fragment_web_search" >
+        <argument
+            android:name="query"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
 </navigation>
