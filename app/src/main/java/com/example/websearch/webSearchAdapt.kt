@@ -1,5 +1,7 @@
 package com.example.websearch
 
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,6 +32,7 @@ class webSearchAdapt(private var searchResults: List<com.example.websearch.Value
         private val iconImageView: ImageView = view.findViewById(R.id.iconImageView)
         private val nameTextView: TextView = view.findViewById(R.id.nameTextView)
         private val platformTextView: TextView = view.findViewById(R.id.platformTextView)
+        private lateinit var url: String
 
         fun bind(searchResult: com.example.websearch.Value) {
             //uses data binding
@@ -37,6 +40,12 @@ class webSearchAdapt(private var searchResults: List<com.example.websearch.Value
             nameTextView.text = searchResult.title
             //platformTextView.text = searchResult.locations.joinToString { it.display_name }
             platformTextView.text = searchResult.description
+            url = searchResult.url
+
+            itemView.setOnClickListener {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                itemView.context.startActivity(intent)
+            }
         }
     }
 
