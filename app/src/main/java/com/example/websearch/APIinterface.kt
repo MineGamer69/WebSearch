@@ -18,7 +18,7 @@ interface APIinterface {
 
     @GET("/api/Search/WebSearchAPI")
     @Headers(
-        "X-RapidAPI-Key:PUT_KEY_HERE",
+        "X-RapidAPI-Key:4ca157c19fmsh9cb5e3b4c9fc3fcp14b886jsn8b1bd93436f9",
         "X-RapidAPI-Host:contextualwebsearch-websearch-v1.p.rapidapi.com"
     )
     fun webSearchResponse(

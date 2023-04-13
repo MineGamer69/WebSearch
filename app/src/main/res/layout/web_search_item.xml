@@ -10,7 +10,9 @@
     android:paddingStart="8dp"
     android:paddingEnd="8dp"
     android:paddingTop="8dp"
-    android:paddingBottom="8dp">
+    android:clickable="true"
+    android:paddingBottom="8dp"
+    android:focusable="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -36,14 +38,14 @@
                 android:id="@+id/nameTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Movie Name"
+                android:text=""
                 android:textAppearance="?attr/textAppearanceListItem" />
 
             <TextView
                 android:id="@+id/platformTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Netflix, Amazon Prime"
+                android:text=""
                 android:textAppearance="?attr/textAppearanceListItemSecondary" />
 
         </LinearLayout>

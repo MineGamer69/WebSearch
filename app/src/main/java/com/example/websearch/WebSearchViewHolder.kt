@@ -1,5 +1,7 @@
 package com.example.websearch
 
+import android.content.Intent
+import android.net.Uri
 import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
@@ -20,6 +22,10 @@ class WebSearchViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         Log.d("works", searchResult.image.url)
         //platformTextView.text = searchResult.locations.joinToString { it.display_name }
         platformTextView.text = searchResult.description
+        itemView.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(searchResult.url))
+            itemView.context.startActivity(intent)
+        }
 
     }
 }
