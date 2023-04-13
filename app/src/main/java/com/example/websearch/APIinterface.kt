@@ -18,7 +18,7 @@ interface APIinterface {
 
     @GET("/api/Search/WebSearchAPI")
     @Headers(
-        "X-RapidAPI-Key:4ca157c19fmsh9cb5e3b4c9fc3fcp14b886jsn8b1bd93436f9",
+        "X-RapidAPI-Key:PUT_KEY_HERE",
         "X-RapidAPI-Host:contextualwebsearch-websearch-v1.p.rapidapi.com"
     )
     fun webSearchResponse(
@@ -29,25 +29,31 @@ interface APIinterface {
         @Query("safeSearch") safeSearch: Boolean = true
     ): Call<webDataX>
 
-    @GET("/imageSearch")
+    @GET("/api/Search/ImageSearchAPI")
     @Headers(
         "X-RapidAPI-Key:PUT_KEY_HERE",
         "X-RapidAPI-Host:contextualwebsearch-websearch-v1.p.rapidapi.com"
     )
     fun imageSearchResponse(
         @Query("q") query: String,
-        @Query("isSafe") safeSearch: Boolean
-    ): Call<webDataX>
+        @Query("pageNumber") pageNumber: Int = 1,
+        @Query("pageSize") pageSize: Int = 10,
+        @Query("autoCorrect") autoCorrect: Boolean = true,
+        @Query("safeSearch") safeSearch: Boolean = true
+    ): Call<imageDataX>
 
-    @GET("/newsSearch")
+    @GET("/api/Search/NewsSearchAPI")
     @Headers(
         "X-RapidAPI-Key:PUT_KEY_HERE",
         "X-RapidAPI-Host:contextualwebsearch-websearch-v1.p.rapidapi.com"
     )
     fun newsSearchResponse(
         @Query("q") query: String,
-        @Query("isSafe") safeSearch: Boolean
-    ): Call<webDataX>
+        @Query("pageNumber") pageNumber: Int = 1,
+        @Query("pageSize") pageSize: Int = 10,
+        @Query("autoCorrect") autoCorrect: Boolean = true,
+        @Query("safeSearch") safeSearch: Boolean = true
+    ): Call<newsDataX>
 
     companion object {
 
