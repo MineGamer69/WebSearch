@@ -3,6 +3,7 @@ package com.example.websearch
 import android.content.ContentValues
 import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,6 +41,9 @@ class SearchFragment : Fragment() {
             }
             navigateToSearchResultFragment(searchType, query, db, safeSearchEnabled) // Pass the value of safeSearchEnabled as a parameter
         }
+        binding.button2.setOnClickListener {
+            showSearchHistory()
+        }
 
         return binding.root
     }
@@ -61,6 +65,37 @@ class SearchFragment : Fragment() {
         }
         db.insert(SearchHistoryDatabase.TABLE_NAME, null, values)
     }
+    private fun showSearchHistory() {
+        val db = searchHistoryDatabase.readableDatabase
+        val cursor = db.rawQuery("SELECT * FROM ${SearchHistoryDatabase.TABLE_NAME}", null)
+
+        val idIndex = cursor.getColumnIndex(SearchHistoryDatabase.COLUMN_ID)
+        val queryIndex = cursor.getColumnIndex(SearchHistoryDatabase.COLUMN_SEARCH_QUERY)
+        val safeSearchIndex = cursor.getColumnIndex(SearchHistoryDatabase.COLUMN_SAFE_SEARCH)
+        val timestampIndex = cursor.getColumnIndex(SearchHistoryDatabase.COLUMN_TIMESTAMP)
+        val searchTypeIndex = cursor.getColumnIndex(SearchHistoryDatabase.COLUMN_SEARCH_TYPE)
+
+        if (idIndex >= 0 && queryIndex >= 0 && safeSearchIndex >= 0 && timestampIndex >= 0 && searchTypeIndex >= 0) {
+            if (cursor.moveToFirst()) {
+                do {
+                    val id = cursor.getInt(idIndex)
+                    val query = cursor.getString(queryIndex)
+                    val safeSearchEnabled = cursor.getInt(safeSearchIndex) == 1
+                    val timestamp = cursor.getString(timestampIndex)
+                    val searchType = cursor.getString(searchTypeIndex)
+
+                    Log.d("SearchHistory", "ID: $id, Query: $query, SafeSearchEnabled: $safeSearchEnabled, Timestamp: $timestamp, SearchType: $searchType")
+                } while (cursor.moveToNext())
+            }
+        } else {
+            Log.e("SearchHistory", "Column not found!")
+        }
+
+
+        cursor.close()
+        db.close()
+    }
+
 
     override fun onDestroy() {
         super.onDestroy()
