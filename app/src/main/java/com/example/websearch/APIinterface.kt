@@ -18,7 +18,7 @@ interface APIinterface {
 
     @GET("/api/Search/WebSearchAPI")
     @Headers(
-        "X-RapidAPI-Key:PUT_KEY_HERE",
+        "X-RapidAPI-Key:4ca157c19fmsh9cb5e3b4c9fc3fcp14b886jsn8b1bd93436f9",
         "X-RapidAPI-Host:contextualwebsearch-websearch-v1.p.rapidapi.com"
     )
     fun webSearchResponse(
@@ -26,7 +26,7 @@ interface APIinterface {
         @Query("pageNumber") pageNumber: Int = 1,
         @Query("pageSize") pageSize: Int = 10,
         @Query("autoCorrect") autoCorrect: Boolean = true,
-        @Query("safeSearch") safeSearch: Boolean = true
+        @Query("safeSearch") safeSearchEnabled: Boolean
     ): Call<webDataX>
 
     @GET("/api/Search/ImageSearchAPI")
