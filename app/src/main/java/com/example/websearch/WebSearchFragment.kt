@@ -43,24 +43,27 @@ class WebSearchFragment : Fragment() {
         //setup bundle from previous inputs and sets it to our variable
         val bundle = arguments
         val mN = bundle?.let { WebSearchFragmentArgs.fromBundle(it).query.toString() }
+        val safeSearchEnabled = bundle?.let { WebSearchFragmentArgs.fromBundle(it).safeSearchEnabled }
         //val cou = bundle?.let { WebSearchFragmentArgs.fromBundle(it). }
 
         if (mN != null ) {
             //makes the api call
-            APIinterface.create(mN).webSearchResponse(mN).enqueue(object : Callback<webDataX> {
-                override fun onResponse(call: Call<webDataX>, response: Response<webDataX>) {
-                    val searchResults = response.body()?.value ?: emptyList()
-                    Log.d("works","working")
-                    // Update the adapter with the new data
-                    searchResultAdapter.updateData(searchResults)
-                }
+            if (safeSearchEnabled != null) {
+                APIinterface.create(mN).webSearchResponse(mN,1,10,true, safeSearchEnabled).enqueue(object : Callback<webDataX> {
+                    override fun onResponse(call: Call<webDataX>, response: Response<webDataX>) {
+                        val searchResults = response.body()?.value ?: emptyList()
+                        Log.d("works","working")
+                        // Update the adapter with the new data
+                        searchResultAdapter.updateData(searchResults)
+                    }
 
-                //handling the on failure
-                override fun onFailure(call: Call<webDataX>, t: Throwable) {
-                    // Handle failure case
-                    t.message?.let { Log.d("onFailure", it) }
-                }
-            })
+                    //handling the on failure
+                    override fun onFailure(call: Call<webDataX>, t: Throwable) {
+                        // Handle failure case
+                        t.message?.let { Log.d("onFailure", it) }
+                    }
+                })
+            }
         }
     }
 }

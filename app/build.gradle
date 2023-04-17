@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'androidx.navigation.safeargs'
     id 'kotlin-parcelize'
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
 
 android {
@@ -17,7 +18,14 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file("local.properties").newDataInputStream())
+        buildConfigField ("String", "api_key", "\"${properties.getProperty("api_key")}\"")
     }
+
+
+
 
     buildTypes {
         release {
@@ -38,6 +46,7 @@ android {
     viewBinding {
         enabled = true
     }
+
 }
 
 dependencies {
