@@ -5,6 +5,6 @@
     <string name="share">Share</string>
     <string name="settings">Settings</string>
     <string name="help">Help</string>
-    <string name="search_screen_desc">Welcome to Movie Search, In this app you will be able to search for any movie and country aliases (us, uk, etc). You will get a response of where the movie is available to view in that specific country! Ex (Amazon Prime, Netflix, etc).</string>
-    <string name="search_result_desc">You will be able to share the download link for this app! </string>
+    <string name="search_screen_desc">Welcome to WebSearch, In this app you will be able to search anything you would like, with 3 different types of searches, WEB, NEWS and IMAGE Search, and if you want your child to use this app, just toggle on the safe search option! This ensures the child\'s safety and filters out unwanted content!</string>
+    <string name="search_result_desc">You will be able to share your searches with your friends and family! </string>
 </resources>
