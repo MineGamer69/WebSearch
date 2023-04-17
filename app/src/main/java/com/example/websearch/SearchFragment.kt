@@ -19,7 +19,7 @@ class SearchFragment : Fragment() {
     private lateinit var binding: FragmentSearchBinding
     private lateinit var searchHistoryDatabase: SearchHistoryDatabase
     private lateinit var safeSearchToggle: Switch
-    private var safeSearchEnabled: Boolean = false // Declare safeSearchEnabled as a member variable
+    private var safeSearchEnabled: Boolean = false // Declare safeSearchEnabled
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentSearchBinding.inflate(inflater, container, false)
