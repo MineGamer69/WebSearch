@@ -1,3 +1,4 @@
+//Made By Aaryan Kapoor & Matt Nova
 package com.example.websearch
 
 import android.content.Intent
@@ -10,7 +11,7 @@ import android.widget.ImageView
 import android.widget.TextView
 
 import com.bumptech.glide.Glide
-
+//Tried using this before but switched to ViewModel to implement livedata!
 class NewsSearchViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val iconImageView: ImageView = itemView.findViewById(R.id.iconImageView)
     private val nameTextView: TextView = itemView.findViewById(R.id.nameTextView)
