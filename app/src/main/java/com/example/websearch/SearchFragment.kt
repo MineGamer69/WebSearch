@@ -95,7 +95,7 @@ class SearchFragment : Fragment() {
 
 
         cursor.close()
-        db.close()
+        //db.close()
     }
 
 
