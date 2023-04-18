@@ -1,4 +1,3 @@
-//Made By Aaryan Kapoor & Matt Nova
 package com.example.websearch
 
 import android.os.Bundle
@@ -7,7 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-class ImageSearchFragment : Fragment() {
+
+class SearchHistoryFragment : Fragment() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +22,7 @@ class ImageSearchFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_image_search, container, false)
+        return inflater.inflate(R.layout.fragment_search_history, container, false)
     }
 
 }

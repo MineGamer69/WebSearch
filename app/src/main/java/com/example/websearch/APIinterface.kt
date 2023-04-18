@@ -1,3 +1,4 @@
+//Made By Aaryan Kapoor & Matt Nova
 package com.example.websearch
 
 import android.os.Build
@@ -42,7 +43,7 @@ interface APIinterface {
         @Query("safeSearch") safeSearchEnabled: Boolean
     ): Call<imageDataX>
 
-    @GET("/api/Search/NewsSearchAPI")
+    @GET("/api/search/NewsSearchAPI")
     @Headers(
         BuildConfig.api_key,
         "X-RapidAPI-Host:contextualwebsearch-websearch-v1.p.rapidapi.com"
