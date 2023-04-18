@@ -43,8 +43,10 @@
         tools:layout="@layout/fragment_image_search" >
         <argument
             android:name="query"
-            app:argType="string"
-            app:nullable="true" />
+            app:argType="string" />
+        <argument
+            android:name="safeSearchEnabled"
+            app:argType="boolean" />
     </fragment>
     <fragment
         android:id="@+id/newsSearchFragment"
@@ -53,8 +55,10 @@
         tools:layout="@layout/fragment_news_search" >
         <argument
             android:name="query"
-            app:argType="string"
-            app:nullable="true" />
+            app:argType="string" />
+        <argument
+            android:name="safeSearchEnabled"
+            app:argType="boolean" />
     </fragment>
     <fragment
         android:id="@+id/webSearchFragment"
@@ -63,7 +67,9 @@
         tools:layout="@layout/fragment_web_search" >
         <argument
             android:name="query"
-            app:argType="string"
-            app:nullable="true" />
+            app:argType="string" />
+        <argument
+            android:name="safeSearchEnabled"
+            app:argType="boolean" />
     </fragment>
 </navigation>
