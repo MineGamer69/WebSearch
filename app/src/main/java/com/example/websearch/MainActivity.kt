@@ -1,4 +1,3 @@
-//Made By Aaryan Kapoor & Matt Nova
 package com.example.websearch
 
 
