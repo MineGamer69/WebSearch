@@ -21,7 +21,7 @@ class NewsSearchFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+        // Inflate layout for new search fragment
         return inflater.inflate(R.layout.fragment_news_search, container, false)
     }
 
