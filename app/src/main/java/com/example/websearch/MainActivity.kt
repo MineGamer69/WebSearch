@@ -64,12 +64,12 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.action_share -> {
                 //Our share button implementation
-                //val navHostFrag = supportFragmentManager.primaryNavigationFragment as NavHostFragment?
-                //val SearchResultFrag = navHostFrag?.childFragmentManager?.primaryNavigationFragment as? SearchResultFragment
+                val navHostFrag = supportFragmentManager.primaryNavigationFragment as NavHostFragment?
+                val SearchResultFrag = navHostFrag?.childFragmentManager?.primaryNavigationFragment as? SearchFragment
 
-                //val bundle = SearchResultFrag?.arguments
-                //val mN = bundle?.let { SearchResultFragmentArgs.fromBundle(it).movName.toString() }
-                //val cou = bundle?.let { SearchResultFragmentArgs.fromBundle(it).country.toString() }
+                val bundle = SearchResultFrag?.arguments
+                //val mN = bundle?.let { SearchFragment.fromBundle(it).movName.toString() }
+                //val cou = bundle?.let { SearchFragment.fromBundle(it).country.toString() }
 
 
 //                val sendIntent: Intent = Intent().apply {
