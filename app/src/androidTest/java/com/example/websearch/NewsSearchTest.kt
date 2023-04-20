@@ -1,17 +1,18 @@
 package com.example.websearch
+
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import org.hamcrest.Matchers
+import org.hamcrest.Matchers.containsString
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class WebSearchTest {
+class NewsSearchTest {
 
     @get:Rule
     val activityRule = ActivityScenarioRule(MainActivity::class.java)
@@ -20,7 +21,7 @@ class WebSearchTest {
     fun testWebSearch() {
         Espresso.onView(ViewMatchers.withId(R.id.start)).perform(ViewActions.click())
         // Navigate to search screen
-        Espresso.onView(ViewMatchers.withId(R.id.web_search_button)).perform(ViewActions.click())
+        Espresso.onView(ViewMatchers.withId(R.id.news_search_button)).perform(ViewActions.click())
 
         // Type in search query
         Espresso.onView(ViewMatchers.withId(R.id.searchInput)).perform(ViewActions.typeText("apple"))
@@ -33,10 +34,9 @@ class WebSearchTest {
         Thread.sleep(5000)
 
         // Check if apple.com is in search results
-        //Espresso.onView(ViewMatchers.withId(R.id.platformTextView))
-            //.check(ViewAssertions.matches(ViewMatchers.withText(Matchers.containsString("Apple"))))
-        Espresso.onView(ViewMatchers.withId(R.id.web_search_card))
-            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
+        Espresso.onView(ViewMatchers.withId(android.R.id.title))
+            .check(ViewAssertions.matches(ViewMatchers.withText(containsString("Apple"))))
 
     }
 }
+
