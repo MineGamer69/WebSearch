@@ -8,8 +8,10 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ShareActionProvider
+import android.widget.Toast
 import androidx.core.app.ShareCompat
 import androidx.core.view.MenuItemCompat
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.NavHost
 import androidx.navigation.fragment.NavHostFragment
@@ -20,6 +22,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.appbar.MaterialToolbar
 import retrofit2.Call
 import retrofit2.Callback
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+
 import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
@@ -67,20 +73,25 @@ class MainActivity : AppCompatActivity() {
                 val navHostFrag = supportFragmentManager.primaryNavigationFragment as NavHostFragment?
                 val SearchResultFrag = navHostFrag?.childFragmentManager?.primaryNavigationFragment as? SearchFragment
 
-                val bundle = SearchResultFrag?.arguments
-                //val mN = bundle?.let { SearchFragment.fromBundle(it).movName.toString() }
-                //val cou = bundle?.let { SearchFragment.fromBundle(it).country.toString() }
+                val db = SearchHistoryDatabase.getDatabase(this)
+                lifecycleScope.launch(Dispatchers.IO) {
+                    val latestSearch = db.searchHistoryDao().getAll().lastOrNull()
+                    latestSearch?.let {
+                        val sendIntent = Intent().apply {
+                            action = Intent.ACTION_SEND
+                            putExtra(Intent.EXTRA_TEXT,
+                                "Hey! check out my Latest search: ${it.searchQuery}, Safe search: ${it.safeSearch}, Type: ${it.searchType}"
+                            )
+                            type = "text/plain"
+                        }
+                        startActivity(Intent.createChooser(sendIntent, null))
+                    } ?: run {
+                            Toast.makeText(this@MainActivity, "No search history found", Toast.LENGTH_SHORT).show()
 
+                    }
 
-//                val sendIntent: Intent = Intent().apply {
-//                    action = Intent.ACTION_SEND
-//                    putExtra(Intent.EXTRA_TEXT,
-//                        "Look what movie I am searching for! Movie Name: $mN Country: $cou"
-//                    )
-//                    type = "text/plain"
-//                }
-//                val shareIntent = Intent.createChooser(sendIntent, null)
-//                startActivity(shareIntent)
+                }
+
                 return true
             }
 
