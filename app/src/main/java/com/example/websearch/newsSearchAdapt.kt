@@ -12,13 +12,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.websearch.R
 
-class webSearchAdapt(private var searchResults: List<com.example.websearch.Value>) :
-    RecyclerView.Adapter<webSearchAdapt.ViewHolder>() {
+class newsSearchAdapt(private var searchResults: List<com.example.websearch.NewsValue>) :
+    RecyclerView.Adapter<newsSearchAdapt.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         //inflates the layout
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.web_search_item, parent, false)
+            .inflate(R.layout.news_search_item, parent, false)
         return ViewHolder(view)
     }
 
@@ -35,7 +35,7 @@ class webSearchAdapt(private var searchResults: List<com.example.websearch.Value
         private val platformTextView: TextView = view.findViewById(R.id.platformTextView)
         private lateinit var url: String
 
-        fun bind(searchResult: com.example.websearch.Value) {
+        fun bind(searchResult: com.example.websearch.NewsValue) {
             //uses data binding
             Glide.with(itemView.context).load(searchResult.image.url).into(iconImageView)
             nameTextView.text = searchResult.title
@@ -54,7 +54,7 @@ class webSearchAdapt(private var searchResults: List<com.example.websearch.Value
     override fun getItemCount() = searchResults.size
 
     //Update data classes
-    fun updateData(newData: List<com.example.websearch.Value>) {
+    fun updateData(newData: List<com.example.websearch.NewsValue>) {
         searchResults = newData
         notifyDataSetChanged()
     }
