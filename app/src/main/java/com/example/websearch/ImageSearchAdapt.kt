@@ -1,4 +1,3 @@
-//Made By Aaryan Kapoor & Matt Nova
 package com.example.websearch
 
 import android.content.Intent
@@ -10,15 +9,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.websearch.R
 
-class newsSearchAdapt(private var searchResults: List<com.example.websearch.NewsValue>) :
-    RecyclerView.Adapter<newsSearchAdapt.ViewHolder>() {
+class ImageSearchAdapt(private var searchResults: List<com.example.websearch.ImageValue>) :
+    RecyclerView.Adapter<ImageSearchAdapt.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         //inflates the layout
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.news_search_item, parent, false)
+            .inflate(R.layout.image_search_item, parent, false)
         return ViewHolder(view)
     }
 
@@ -30,17 +28,16 @@ class newsSearchAdapt(private var searchResults: List<com.example.websearch.News
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         //sets up variables for our recycle view
-        private val iconImageView: ImageView = view.findViewById(R.id.iconImageView)
-        private val nameTextView: TextView = view.findViewById(R.id.nameTextView)
-        private val platformTextView: TextView = view.findViewById(R.id.platformTextView)
+        private val ImageView: ImageView = view.findViewById(R.id.imageView)
+        private val TextView: TextView = view.findViewById(R.id.nameTextView)
+
         private lateinit var url: String
 
-        fun bind(searchResult: com.example.websearch.NewsValue) {
+        fun bind(searchResult: ImageValue) {
             //uses data binding
-            Glide.with(itemView.context).load(searchResult.image.url).into(iconImageView)
-            nameTextView.text = searchResult.title
+            Glide.with(itemView.context).load(searchResult.url).into(ImageView)
+            TextView.text = searchResult.title
             //platformTextView.text = searchResult.locations.joinToString { it.display_name }
-            platformTextView.text = searchResult.description
             url = searchResult.url
 
             itemView.setOnClickListener {
@@ -54,7 +51,7 @@ class newsSearchAdapt(private var searchResults: List<com.example.websearch.News
     override fun getItemCount() = searchResults.size
 
     //Update data classes
-    fun updateData(newData: List<com.example.websearch.NewsValue>) {
+    fun updateData(newData: List<com.example.websearch.ImageValue>) {
         searchResults = newData
         notifyDataSetChanged()
     }
