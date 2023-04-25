@@ -49,10 +49,15 @@ class SearchFragment : Fragment() {
         }
 
         binding.button2.setOnClickListener {
+            navigateToSearchHistoryFragment()
             showSearchHistory()
         }
 
         return binding.root
+    }
+
+    private fun navigateToSearchHistoryFragment() {
+        findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToSearchHistoryFragment())
     }
 
     private fun navigateToSearchResultFragment(searchType: SearchType, query: String, safeSearchEnabled: Boolean) {
