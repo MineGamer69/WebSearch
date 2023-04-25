@@ -33,7 +33,7 @@ class ImageSearchTest {
         Thread.sleep(5000)
 
         // Check if apple.com is in search results
-        Espresso.onView(ViewMatchers.withId(R.id.nameTextView))
+        Espresso.onView(ViewMatchers.withId(R.id.imageTextView))
             .check(ViewAssertions.matches(ViewMatchers.hasDescendant(ViewMatchers.withText("Apple"))))
     }
 }

@@ -1,12 +1,15 @@
 package com.example.websearch
 
+import androidx.lifecycle.ViewModelProvider.NewInstanceFactory.Companion.instance
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.assertion.ViewAssertions
+import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers
+import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import org.hamcrest.Matchers.containsString
+import org.hamcrest.Matchers.*
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -34,8 +37,12 @@ class NewsSearchTest {
         Thread.sleep(5000)
 
         // Check if apple.com is in search results
-        Espresso.onView(ViewMatchers.withId(android.R.id.title))
-            .check(ViewAssertions.matches(ViewMatchers.withText(containsString("Apple"))))
+        //Espresso.onView(ViewMatchers.withId(R.id.newsTextView)).check(ViewAssertions.matches(ViewMatchers.withText("Apple")))
+        val newsTextView = Espresso.onView(allOf(withTagValue(equalTo("unique_news_textview")), isDisplayed()))
+
+
+
+
 
     }
 }

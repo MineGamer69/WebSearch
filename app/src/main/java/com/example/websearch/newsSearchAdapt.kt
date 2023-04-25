@@ -31,14 +31,14 @@ class newsSearchAdapt(private var searchResults: List<com.example.websearch.News
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         //sets up variables for our recycle view
         private val iconImageView: ImageView = view.findViewById(R.id.iconImageView)
-        private val nameTextView: TextView = view.findViewById(R.id.nameTextView)
+        private val newsTextView: TextView = view.findViewById(R.id.newsTextView)
         private val platformTextView: TextView = view.findViewById(R.id.platformTextView)
         private lateinit var url: String
 
         fun bind(searchResult: com.example.websearch.NewsValue) {
             //uses data binding
             Glide.with(itemView.context).load(searchResult.image.url).into(iconImageView)
-            nameTextView.text = searchResult.title
+            newsTextView.text = searchResult.title
             //platformTextView.text = searchResult.locations.joinToString { it.display_name }
             platformTextView.text = searchResult.description
             url = searchResult.url
