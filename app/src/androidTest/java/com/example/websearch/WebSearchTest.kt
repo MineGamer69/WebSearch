@@ -35,8 +35,7 @@ class WebSearchTest {
         // Check if apple.com is in search results
         //Espresso.onView(ViewMatchers.withId(R.id.platformTextView))
             //.check(ViewAssertions.matches(ViewMatchers.withText(Matchers.containsString("Apple"))))
-        Espresso.onView(ViewMatchers.withId(R.id.web_search_card))
-            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
+        Espresso.onView(ViewMatchers.withId(R.id.web_search_card)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
 
     }
 }

@@ -35,10 +35,10 @@ class SearchHistoryEntityTest {
     fun insertAndGetSearchHistory() = runBlocking {
         // Create a new search history entity
         val searchHistory = SearchHistoryEntity(
-            searchQuery = "test query",
+            searchQuery = "testquery",
             safeSearch = true,
             timeStamp = System.currentTimeMillis(),
-            searchType = "web"
+            searchType = "WEB"
         )
 
         // Insert the search history into the database
@@ -46,6 +46,7 @@ class SearchHistoryEntityTest {
 
         // Get the search history from the database
         val result = searchHistoryDao.getAll()
+        println(result)
 
         // Check that the retrieved search history list contains the expected search history entity
         assertEquals(1, result.size)
