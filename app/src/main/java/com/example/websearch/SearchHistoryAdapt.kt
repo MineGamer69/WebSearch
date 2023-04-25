@@ -14,12 +14,10 @@ class SearchHistoryAdapt : RecyclerView.Adapter<SearchHistoryAdapt.SearchHistory
 
 
     fun setData(data: List<SearchHistoryEntity>) {
-        val reversedData = data.reversed()
-        if (searchHistory != reversedData) {
-            searchHistory = reversedData
+        searchHistory = data.subList(0,data.size)
             notifyDataSetChanged()
-        }
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchHistoryViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.search_history_item, parent, false)
@@ -47,8 +45,6 @@ class SearchHistoryAdapt : RecyclerView.Adapter<SearchHistoryAdapt.SearchHistory
             val dateFormat = SimpleDateFormat("yyyy-MM-dd hh:mm:ss a", Locale.getDefault())
             val date = Date(searchHistoryEntity.timeStamp)
             timestampTextView.text = dateFormat.format(date)
-
-
 
             searchTypeTextView.text = searchHistoryEntity.searchType
         }

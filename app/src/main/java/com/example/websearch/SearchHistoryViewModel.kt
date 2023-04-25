@@ -18,9 +18,10 @@ class SearchHistoryViewModel(application: Application) : AndroidViewModel(applic
     val searchHistory: LiveData<List<SearchHistoryEntity>>
         get() = _searchHistory
 
+
     init {
         viewModelScope.launch(Dispatchers.IO) {
-            _searchHistory.postValue(searchHistoryDao.getAll())
+            _searchHistory.postValue(searchHistoryDao.getAllSearchHistory())
         }
     }
     fun insertSearchHistory(searchHistoryEntity: SearchHistoryEntity) {
