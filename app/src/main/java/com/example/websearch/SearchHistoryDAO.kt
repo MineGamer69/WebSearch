@@ -14,4 +14,7 @@ interface SearchHistoryDAO {
 
     @Query("DELETE FROM search_history")
     suspend fun deleteAll()
+
+    @Query("SELECT * FROM search_history ORDER BY timeStamp DESC")
+    suspend fun getAllSearchHistory(): List<SearchHistoryEntity>
 }

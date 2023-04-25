@@ -31,6 +31,9 @@
         <action
             android:id="@+id/action_searchFragment_to_webSearchFragment"
             app:destination="@id/webSearchFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_searchHistoryFragment"
+            app:destination="@id/searchHistoryFragment" />
     </fragment>
     <fragment
         android:id="@+id/helpFragment2"
@@ -72,4 +75,8 @@
             android:name="safeSearchEnabled"
             app:argType="boolean" />
     </fragment>
+    <fragment
+        android:id="@+id/searchHistoryFragment"
+        android:name="com.example.websearch.SearchHistoryFragment"
+        android:label="SearchHistoryFragment" />
 </navigation>
