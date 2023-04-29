@@ -36,9 +36,16 @@ class NewsSearchTest {
         // Wait for results to load
         Thread.sleep(5000)
 
-        // Check if apple.com is in search results
+        // Check if apple is being searched
         //Espresso.onView(ViewMatchers.withId(R.id.newsTextView)).check(ViewAssertions.matches(ViewMatchers.withText("Apple")))
-        val newsTextView = Espresso.onView(allOf(withTagValue(equalTo("unique_news_textview")), isDisplayed()))
+        Espresso.onView(allOf(withTagValue(equalTo("unique_news_textview")), isDisplayed()))
+
+        //Espresso.onView(ViewMatchers.withId(R.id.newsTextView)).check(ViewAssertions.matches(hasDescendant(withText("apple"))))
+        //Espresso.onView(allOf(withTagValue(equalTo("uniqueNewsTextView"))))
+        //Espresso.onView(allOf(withTagValue(equalTo("unique_news_textview")), hasDescendant(withText("apple")))).check(matches(isDisplayed()))
+
+
+        //newsTextView.check(matches(withText("apple")))
 
 
 

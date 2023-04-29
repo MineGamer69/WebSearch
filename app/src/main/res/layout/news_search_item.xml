@@ -45,6 +45,7 @@
                 android:id="@+id/platformTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:tag="uniqueNewsTextView"
                 android:text=""
                 android:textAppearance="?attr/textAppearanceListItemSecondary" />
 
