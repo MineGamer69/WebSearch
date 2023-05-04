@@ -15,4 +15,9 @@
     <string name="search_type">Search Type</string>
     <string name="safe_search">Safe Search</string>
     <string name="timestamp">timestamp</string>
+    <string name="clear">Clear</string>
+    <string name="night_mode_toggle_content_description">Toggle night mode</string>
+    <string name="night_mode_toggle">Toggle night mode</string>
+
+
 </resources>

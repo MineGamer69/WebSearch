@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:textSize="16sp"
         android:textStyle="bold"
-        android:textColor="@android:color/black"
+        android:textColor="@color/textColor"
         android:text="@string/search_query" />
     </LinearLayout>
 
@@ -45,7 +45,7 @@
         android:layout_height="wrap_content"
         android:textSize="14sp"
         android:textStyle="bold"
-        android:textColor="@android:color/black"
+        android:textColor="@color/textColor"
         android:text="@string/search_type" />
     </LinearLayout>
 
@@ -67,7 +67,7 @@
         android:layout_height="wrap_content"
         android:textSize="14sp"
         android:textStyle="bold"
-        android:textColor="@android:color/black"
+        android:textColor="@color/textColor"
         android:text="@string/safe_search" />
     </LinearLayout>
 
@@ -88,7 +88,7 @@
         android:layout_height="wrap_content"
         android:textSize="14sp"
         android:textStyle="bold"
-        android:textColor="@android:color/black"
+        android:textColor="@color/textColor"
         android:text="@string/timestamp" />
     </LinearLayout>
 
