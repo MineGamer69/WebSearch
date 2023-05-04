@@ -1,43 +1,32 @@
 package com.example.websearch
 
-
 import android.content.Intent
+import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.ShareActionProvider
 import android.widget.Toast
-import androidx.core.app.ShareCompat
-import androidx.core.view.MenuItemCompat
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.widget.AppCompatImageButton
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
-import androidx.navigation.NavHost
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.appbar.MaterialToolbar
-import retrofit2.Call
-import retrofit2.Callback
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
-import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var navController: NavController
+    private var nightModeToggle: AppCompatImageButton? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //Setting up our navigation for our toolbar
-
-
 
         val menuBar = findViewById<MaterialToolbar>(R.id.toolbar)
         setSupportActionBar(menuBar)
@@ -52,57 +41,57 @@ class MainActivity : AppCompatActivity() {
 
         menuBar.setupWithNavController(navController, toolbarConfig)
 
+        menuBar.setOnMenuItemClickListener(Toolbar.OnMenuItemClickListener { item ->
+            onOptionsItemSelected(item)
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        //Our inflator command
         menuInflater.inflate(R.menu.toolbar, menu)
-        return super.onCreateOptionsMenu(menu)
+
+        nightModeToggle = menu?.findItem(R.id.night_mode_toggle)?.actionView as? AppCompatImageButton
+        nightModeToggle?.setImageResource(getNightModeToggleIcon(AppCompatDelegate.getDefaultNightMode()))
+        nightModeToggle?.setOnClickListener {
+            toggleNightMode()
+        }
+        menu?.findItem(R.id.night_mode_toggle)?.setActionView(nightModeToggle)
+
+        return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val menuID = item.itemId
-        return when (menuID) {
-            R.id.action_settings -> {
-                //Settings button implementation
-                //navController.navigate(R.id.settingsFragment)
+        return when (item.itemId) {
+            R.id.action_share -> {
+                // ...
                 true
             }
-            R.id.action_share -> {
-                //Our share button implementation
-                val navHostFrag = supportFragmentManager.primaryNavigationFragment as NavHostFragment?
-                val SearchResultFrag = navHostFrag?.childFragmentManager?.primaryNavigationFragment as? SearchFragment
-
-                val db = SearchHistoryDatabase.getDatabase(this)
-                lifecycleScope.launch(Dispatchers.IO) {
-                    val latestSearch = db.searchHistoryDao().getAll().lastOrNull()
-                    latestSearch?.let {
-                        val sendIntent = Intent().apply {
-                            action = Intent.ACTION_SEND
-                            putExtra(Intent.EXTRA_TEXT,
-                                "Hey! check out my Latest search: ${it.searchQuery}, Safe search: ${it.safeSearch}, Type: ${it.searchType}"
-                            )
-                            type = "text/plain"
-                        }
-                        startActivity(Intent.createChooser(sendIntent, null))
-                    } ?: run {
-                            Toast.makeText(this@MainActivity, "No search history found", Toast.LENGTH_SHORT).show()
-
-                    }
-
-                }
-
-                return true
-            }
-
-
             R.id.helpFragment -> {
-                //Help Button implementation
                 navController.navigate(R.id.helpFragment2)
                 true
             }
-            else -> return NavigationUI.onNavDestinationSelected(item, navController)
+            R.id.night_mode_toggle -> {
+                toggleNightMode()
+                true
+            }
+            else -> NavigationUI.onNavDestinationSelected(item, navController) || super.onOptionsItemSelected(item)
         }
     }
 
+    private fun toggleNightMode() {
+        val nightMode = if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            AppCompatDelegate.MODE_NIGHT_NO
+        } else {
+            AppCompatDelegate.MODE_NIGHT_YES
+        }
+        AppCompatDelegate.setDefaultNightMode(nightMode)
+        nightModeToggle?.setImageResource(getNightModeToggleIcon(AppCompatDelegate.getDefaultNightMode()))
+    }
+
+    private fun getNightModeToggleIcon(nightMode: Int): Int {
+        return if (nightMode == AppCompatDelegate.MODE_NIGHT_YES) {
+            R.drawable.sun
+        } else {
+            R.drawable.moon
+        }
+    }
 }
