@@ -33,6 +33,8 @@ class SearchHistoryViewModel(application: Application) : AndroidViewModel(applic
     fun clearSearchHistory() {
         viewModelScope.launch(Dispatchers.IO) {
             searchHistoryDao.deleteAll()
+            _searchHistory.postValue(searchHistoryDao.getAllSearchHistory())
         }
     }
+
 }

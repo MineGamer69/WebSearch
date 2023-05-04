@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Switch
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import com.example.websearch.databinding.FragmentSearchBinding
@@ -28,9 +29,12 @@ class SearchFragment : Fragment() {
     private lateinit var safeSearchToggle: Switch
     private var safeSearchEnabled: Boolean = false
 
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentSearchBinding.inflate(inflater, container, false)
         searchHistoryDao = SearchHistoryDatabase.getDatabase(requireContext()).searchHistoryDao()
+
+
 
         safeSearchToggle = binding.safesearchtoggle
         safeSearchToggle.setOnCheckedChangeListener { _, isChecked ->
@@ -68,7 +72,10 @@ class SearchFragment : Fragment() {
         }
         findNavController().navigate(direction)
 
+
+
         lifecycleScope.launch {
+
             searchHistoryDao.insert(
                 SearchHistoryEntity(
                     searchQuery = query,

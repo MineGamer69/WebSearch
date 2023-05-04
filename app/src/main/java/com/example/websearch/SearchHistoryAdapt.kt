@@ -15,7 +15,7 @@ class SearchHistoryAdapt : RecyclerView.Adapter<SearchHistoryAdapt.SearchHistory
 
     fun setData(data: List<SearchHistoryEntity>) {
         searchHistory = data.subList(0,data.size)
-            notifyDataSetChanged()
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchHistoryViewHolder {
