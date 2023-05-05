@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.appcompat.widget.Toolbar
@@ -18,12 +19,16 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.appbar.MaterialToolbar
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(){
 
     lateinit var navController: NavController
     private var nightModeToggle: AppCompatImageButton? = null
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +51,8 @@ class MainActivity : AppCompatActivity() {
             onOptionsItemSelected(item)
         })
     }
-//Setting up options menu for the user
+
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.toolbar, menu)
 
@@ -55,16 +61,35 @@ class MainActivity : AppCompatActivity() {
         nightModeToggle?.setOnClickListener {
             toggleNightMode()
         }
-    //added night mode toggle switch
         menu?.findItem(R.id.night_mode_toggle)?.setActionView(nightModeToggle)
 
         return true
     }
-//all the item selection with other options
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_share -> {
-                // ...
+                val db = SearchHistoryDatabase.getDatabase(this)
+                lifecycleScope.launch(Dispatchers.IO) {
+                    val latestSearch = db.searchHistoryDao().getLatestSearch()
+                    latestSearch?.let {
+                        runOnUiThread {
+                            Toast.makeText(this@MainActivity, "Latest search: ${it.searchQuery}, Safe search: ${it.safeSearch}, Type: ${it.searchType}", Toast.LENGTH_SHORT).show()
+                        }
+                        val sendIntent = Intent().apply {
+                            action = Intent.ACTION_SEND
+                            putExtra(Intent.EXTRA_TEXT,
+                                "Hey! check out my Latest search: ${it.searchQuery}, Safe search: ${it.safeSearch}, Type: ${it.searchType}"
+                            )
+                            type = "text/plain"
+                        }
+                        startActivity(Intent.createChooser(sendIntent, null))
+                    } ?: run {
+                        runOnUiThread {
+                            Toast.makeText(this@MainActivity, "No search history found", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
                 true
             }
             R.id.helpFragment -> {

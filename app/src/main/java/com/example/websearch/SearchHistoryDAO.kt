@@ -19,4 +19,7 @@ interface SearchHistoryDAO {
 
     @Query("SELECT * FROM search_history ORDER BY timeStamp DESC")
     suspend fun getAllSearchHistory(): List<SearchHistoryEntity>
+
+    @Query("SELECT * FROM search_history ORDER BY timeStamp DESC LIMIT 1")
+    suspend fun getLatestSearch(): SearchHistoryEntity?
 }

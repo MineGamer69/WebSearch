@@ -1,6 +1,7 @@
 //Made By Aaryan Kapoor & Matt Nova
 package com.example.websearch
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +17,9 @@ class ImageSearchFragment : Fragment() {
     private lateinit var searchResultRecyclerView: RecyclerView
     private lateinit var searchResultAdapter: ImageSearchAdapt
 
+
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -26,6 +30,7 @@ class ImageSearchFragment : Fragment() {
 //set up the view created
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 
         searchResultRecyclerView = view.findViewById(R.id.imageSearchResult)
         searchResultRecyclerView.layoutManager = LinearLayoutManager(requireContext())

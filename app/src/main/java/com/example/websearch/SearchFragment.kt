@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Switch
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import com.example.websearch.databinding.FragmentSearchBinding
@@ -28,15 +29,18 @@ class SearchFragment : Fragment() {
     private lateinit var safeSearchToggle: Switch
     private var safeSearchEnabled: Boolean = false
 
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentSearchBinding.inflate(inflater, container, false)
         searchHistoryDao = SearchHistoryDatabase.getDatabase(requireContext()).searchHistoryDao()
-//setting up view binding and livedata
+
+
+
         safeSearchToggle = binding.safesearchtoggle
         safeSearchToggle.setOnCheckedChangeListener { _, isChecked ->
             safeSearchEnabled = isChecked
         }
-// on click listner
+
         binding.button.setOnClickListener {
             val query = binding.searchInput.text.toString()
             val searchType = when (binding.searchTypeGroup.checkedRadioButtonId) {
@@ -55,11 +59,11 @@ class SearchFragment : Fragment() {
 
         return binding.root
     }
-//navigation to search history
+
     private fun navigateToSearchHistoryFragment() {
         findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToSearchHistoryFragment())
     }
-// setup enums for IMAGE, WEB AND NEWS view
+
     private fun navigateToSearchResultFragment(searchType: SearchType, query: String, safeSearchEnabled: Boolean) {
         val direction: NavDirections = when (searchType) {
             SearchType.IMAGE -> SearchFragmentDirections.actionSearchFragmentToImageSearchFragment(query, safeSearchEnabled)
@@ -68,7 +72,10 @@ class SearchFragment : Fragment() {
         }
         findNavController().navigate(direction)
 
+
+
         lifecycleScope.launch {
+
             searchHistoryDao.insert(
                 SearchHistoryEntity(
                     searchQuery = query,

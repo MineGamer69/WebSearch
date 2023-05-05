@@ -2,6 +2,7 @@
 
 package com.example.websearch
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 //Our database entity class with the values in it.
@@ -12,5 +13,5 @@ data class SearchHistoryEntity(
     val searchQuery: String,
     val safeSearch: Boolean,
     val timeStamp: Long,
-    val searchType: String
+    val searchType: String,
 )

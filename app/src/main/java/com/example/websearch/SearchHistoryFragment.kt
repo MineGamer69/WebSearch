@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,12 +21,15 @@ class SearchHistoryFragment : Fragment() {
     private lateinit var viewModel: SearchHistoryViewModel
     private lateinit var adapter: SearchHistoryAdapt
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //displaying via viewmodel
         viewModel = ViewModelProvider(this).get(SearchHistoryViewModel::class.java)
 
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -47,11 +52,17 @@ class SearchHistoryFragment : Fragment() {
         // Set the adapter to the RecyclerView
         recyclerView.adapter = adapter
 
-        // Observe the searchHistory property and update the adapter when the data changes
-        viewModel.searchHistory.observe(viewLifecycleOwner) { searchHistory ->
-            Log.d("SearchHistoryFragment", "Search history changed: $searchHistory")
+        // Find the clear button and set an OnClickListener
+        val clearButton: Button = view.findViewById(R.id.clearButton)
+        clearButton.setOnClickListener {
+            viewModel.clearSearchHistory()
+        }
+            // Observe the searchHistory property and update the adapter when the data changes
+            viewModel.searchHistory.observe(viewLifecycleOwner) { searchHistory ->
+                Log.d("SearchHistoryFragment", "Search history changed: $searchHistory")
 
-            adapter.setData(searchHistory)
+                adapter.setData(searchHistory)
+            }
         }
     }
-}
+

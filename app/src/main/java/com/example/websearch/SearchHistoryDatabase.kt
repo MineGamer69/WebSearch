@@ -2,9 +2,12 @@
 package com.example.websearch
 
 import android.content.Context
+import android.util.Log
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.sqlite.db.SupportSQLiteDatabase
+import androidx.room.migration.Migration
 
 @Database(entities = [SearchHistoryEntity::class], version = 1)
 abstract class SearchHistoryDatabase : RoomDatabase() {
@@ -20,7 +23,9 @@ abstract class SearchHistoryDatabase : RoomDatabase() {
                     context.applicationContext,
                     SearchHistoryDatabase::class.java,
                     "search_history_database"
-                ).build()
+                )
+                    .fallbackToDestructiveMigration()
+                    .build()
                 INSTANCE = instance
                 instance
             }
