@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 class ImageSearchFragment : Fragment() {
-
+//set up variables
     private val viewModel: ImageSearchViewModel by activityViewModels()
     private lateinit var searchResultRecyclerView: RecyclerView
     private lateinit var searchResultAdapter: ImageSearchAdapt
@@ -23,7 +23,7 @@ class ImageSearchFragment : Fragment() {
     ): View {
         return inflater.inflate(R.layout.fragment_image_search, container, false)
     }
-
+//set up the view created
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -32,7 +32,7 @@ class ImageSearchFragment : Fragment() {
 
         searchResultAdapter = ImageSearchAdapt(emptyList())
         searchResultRecyclerView.adapter = searchResultAdapter
-
+//using bundle to transfer args to other fragment
         val bundle = arguments
         val query = bundle?.let { ImageSearchFragmentArgs.fromBundle(it).query.toString() }
         val safeSearchEnabled = bundle?.let { ImageSearchFragmentArgs.fromBundle(it).safeSearchEnabled }

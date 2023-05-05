@@ -4,7 +4,7 @@ package com.example.websearch
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-
+//Our database entity class with the values in it.
 @Entity(tableName = "search_history")
 data class SearchHistoryEntity(
     @PrimaryKey(autoGenerate = true)

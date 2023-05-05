@@ -5,7 +5,7 @@ package com.example.websearch
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-
+//DAO file for my inputs and deletes and displaying the search history
 @Dao
 interface SearchHistoryDAO {
     @Query("SELECT * FROM search_history")

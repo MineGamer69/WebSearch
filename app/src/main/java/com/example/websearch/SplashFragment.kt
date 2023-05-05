@@ -35,6 +35,7 @@ class SplashFragment : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navCtrl = Navigation.findNavController(view)
+        //splash screen
         view.findViewById<Button>(R.id.start).setOnClickListener(this)
     }
     override fun onClick(p0: View?){

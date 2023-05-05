@@ -24,6 +24,7 @@ class NewsSearchFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_news_search, container, false)
     }
 
+    //setting up view creation
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

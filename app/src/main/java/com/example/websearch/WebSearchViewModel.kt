@@ -12,7 +12,7 @@ import retrofit2.Response
 class WebSearchViewModel : ViewModel() {
 
     val searchResults = MutableLiveData<List<Value>>()
-
+//using mutable livedata implementation
     fun performSearch(query: String, safeSearchEnabled: Boolean) {
         APIinterface.create(query).webSearchResponse(query,1,10,true, safeSearchEnabled).enqueue(object : Callback<webDataX> {
             override fun onResponse(call: Call<webDataX>, response: Response<webDataX>) {

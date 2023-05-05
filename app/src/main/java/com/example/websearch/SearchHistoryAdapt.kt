@@ -14,32 +14,32 @@ class SearchHistoryAdapt : RecyclerView.Adapter<SearchHistoryAdapt.SearchHistory
 
     private var searchHistory: List<SearchHistoryEntity> = emptyList()
 
-
+//data setting of search history
     fun setData(data: List<SearchHistoryEntity>) {
         searchHistory = data.subList(0,data.size)
-            notifyDataSetChanged()
+        notifyDataSetChanged()
     }
-
+//setup view holder
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchHistoryViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.search_history_item, parent, false)
         return SearchHistoryViewHolder(view)
     }
-
+//view binding setup
     override fun onBindViewHolder(holder: SearchHistoryViewHolder, position: Int) {
         holder.bind(searchHistory[position])
     }
-
+//gets the item count
     override fun getItemCount(): Int {
         return searchHistory.size
     }
-
+//displays the item
     inner class SearchHistoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val searchQueryTextView: TextView = itemView.findViewById(R.id.searchQueryTextView)
         private val safeSearchTextView: TextView = itemView.findViewById(R.id.safeSearchTextView)
         private val timestampTextView: TextView = itemView.findViewById(R.id.timestampTextView)
         private val searchTypeTextView: TextView = itemView.findViewById(R.id.searchTypeTextView)
-
+//view binding implemented
         fun bind(searchHistoryEntity: SearchHistoryEntity) {
             searchQueryTextView.text = searchHistoryEntity.searchQuery
             safeSearchTextView.text = if (searchHistoryEntity.safeSearch) "Yes" else "No"

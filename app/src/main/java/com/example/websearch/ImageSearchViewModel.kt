@@ -11,7 +11,7 @@ import retrofit2.Response
 class ImageSearchViewModel : ViewModel() {
 
     val searchResults = MutableLiveData<List<ImageValue>>()
-
+//API setup
     fun performSearch(query: String, safeSearchEnabled: Boolean) {
         APIinterface.create(query).imageSearchResponse(query,1,10,true, safeSearchEnabled).enqueue(object : Callback<imageDataX> {
             override fun onResponse(call: Call<imageDataX>, response: Response<imageDataX>) {

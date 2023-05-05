@@ -2,6 +2,7 @@
 package com.example.websearch
 
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View

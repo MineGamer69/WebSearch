@@ -23,7 +23,7 @@ class WebSearchFragment : Fragment() {
     ): View {
         return inflater.inflate(R.layout.fragment_web_search, container, false)
     }
-
+//setting up the view creation for websearch
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -32,7 +32,7 @@ class WebSearchFragment : Fragment() {
 
         searchResultAdapter = webSearchAdapt(emptyList())
         searchResultRecyclerView.adapter = searchResultAdapter
-
+//bundle data
         val bundle = arguments
         val query = bundle?.let { WebSearchFragmentArgs.fromBundle(it).query.toString() }
         val safeSearchEnabled = bundle?.let { WebSearchFragmentArgs.fromBundle(it).safeSearchEnabled }

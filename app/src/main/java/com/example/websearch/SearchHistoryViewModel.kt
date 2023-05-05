@@ -14,24 +14,25 @@ class SearchHistoryViewModel(application: Application) : AndroidViewModel(applic
 
     private val searchHistoryDao: SearchHistoryDAO =
         SearchHistoryDatabase.getDatabase(application).searchHistoryDao()
-
+//Implemented MutableLiveData instead of LiveData due to editing
     private val _searchHistory: MutableLiveData<List<SearchHistoryEntity>> =
         MutableLiveData()
     val searchHistory: LiveData<List<SearchHistoryEntity>>
         get() = _searchHistory
 
-
+// this displays all the search history data
     init {
         viewModelScope.launch(Dispatchers.IO) {
             _searchHistory.postValue(searchHistoryDao.getAllSearchHistory())
         }
     }
+    //inserts the search history
     fun insertSearchHistory(searchHistoryEntity: SearchHistoryEntity) {
         viewModelScope.launch(Dispatchers.IO) {
             searchHistoryDao.insert(searchHistoryEntity)
         }
     }
-
+//clearing search history
     fun clearSearchHistory() {
         viewModelScope.launch(Dispatchers.IO) {
             searchHistoryDao.deleteAll()

@@ -21,7 +21,7 @@ class SearchHistoryFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+//displaying via viewmodel
         viewModel = ViewModelProvider(this).get(SearchHistoryViewModel::class.java)
 
     }
@@ -32,7 +32,7 @@ class SearchHistoryFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_search_history, container, false)
     }
-
+//search history added
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         Log.d(TAG, "onViewCreated called")
         super.onViewCreated(view, savedInstanceState)

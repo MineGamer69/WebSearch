@@ -22,6 +22,7 @@ class ImageSearchAdapt(private var searchResults: List<com.example.websearch.Ima
         return ViewHolder(view)
     }
 
+    //sets up binding for the view holder
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val searchResult = searchResults[position]
         holder.bind(searchResult)

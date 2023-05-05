@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
             onOptionsItemSelected(item)
         })
     }
-
+//Setting up options menu for the user
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.toolbar, menu)
 
@@ -55,11 +55,12 @@ class MainActivity : AppCompatActivity() {
         nightModeToggle?.setOnClickListener {
             toggleNightMode()
         }
+    //added night mode toggle switch
         menu?.findItem(R.id.night_mode_toggle)?.setActionView(nightModeToggle)
 
         return true
     }
-
+//all the item selection with other options
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_share -> {

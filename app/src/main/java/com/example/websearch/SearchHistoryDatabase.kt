@@ -9,7 +9,7 @@ import androidx.room.RoomDatabase
 @Database(entities = [SearchHistoryEntity::class], version = 1)
 abstract class SearchHistoryDatabase : RoomDatabase() {
     abstract fun searchHistoryDao(): SearchHistoryDAO
-
+//setting up the database instance and building it.
     companion object {
         @Volatile
         private var INSTANCE: SearchHistoryDatabase? = null

@@ -21,7 +21,7 @@ class newsSearchAdapt(private var searchResults: List<com.example.websearch.News
             .inflate(R.layout.news_search_item, parent, false)
         return ViewHolder(view)
     }
-
+//setup viewbinding and livevalue
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val searchResult = searchResults[position]
         holder.bind(searchResult)

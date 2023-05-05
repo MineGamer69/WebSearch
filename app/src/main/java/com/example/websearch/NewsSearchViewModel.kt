@@ -11,7 +11,7 @@ import retrofit2.Response
 class NewsSearchViewModel : ViewModel() {
 
     val searchResults = MutableLiveData<List<NewsValue>>()
-
+//This is called when the option is selected and performs the search
     fun performSearch(query: String, safeSearchEnabled: Boolean) {
         APIinterface.create(query).newsSearchResponse(query,1,10,true, safeSearchEnabled).enqueue(object : Callback<newsDataX> {
             override fun onResponse(call: Call<newsDataX>, response: Response<newsDataX>) {

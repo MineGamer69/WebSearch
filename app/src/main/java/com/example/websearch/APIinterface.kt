@@ -16,7 +16,7 @@ import java.net.URLEncoder
 
 // Backend for our api gets
 interface APIinterface {
-
+//Our backend class with api calls and queries
     @GET("/api/Search/WebSearchAPI")
     @Headers(
         BuildConfig.api_key,
